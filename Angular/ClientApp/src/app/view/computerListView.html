@@ -1,15 +1,4 @@
-<div class="row">
-  <div class="col-md-12 mx-auto">
-    <div class="md-form">
-      <label for="search">Search</label>
-      <input type="text"
-             [(ngModel)]="searchText"
-             class="form-control"
-             id="search"
-             mdbInput />
-    </div>
-  </div>
-</div>
+
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="data.computers">
   <thead>
     <tr>
@@ -25,11 +14,11 @@
   <tbody>
     <tr *ngFor="let c of data.computers">
       <td>{{ c.processor }}</td>
-      <td>{{ c.ram + c.ramUnits }}</td>
+      <td>{{ c.ram + ' ' + c.ramUnits }}</td>
       <td>{{ c.hardDisk + c.hardDiskUnits + c.hardDiskType }}</td>
       <td>{{ c.usb }}</td>
       <td>{{ c.graphicsCard }}</td>
-      <td>{{ c.weight + c.weightUnits }}</td>
+      <td>{{ c.weight +  ' ' + c.weightUnits }}</td>
       <td>{{ c.powerSupply + "W PSU"}}</td>
     </tr>
   </tbody>

@@ -8,10 +8,6 @@ import { ComputerInfo } from "../services/ComputerInfo";
 })
 export default class ComputerListView implements OnInit{
 
-  elements: any = [];
-  headElements = ['processor', 'ram', 'Last', 'Handle'];
-  searchText: string = '';
-  previous: string;
   public computers: ComputerInfo[];
     constructor(public data: ComputerData) {
   }
@@ -21,17 +17,6 @@ export default class ComputerListView implements OnInit{
     .subscribe();
   }
 
-  searchItems() {
-    const prev = this.computers.getDataSource();
-    if (!this.searchText) {
-      this.computers.setDataSource(this.previous);
-      this.elements = this.computers.getDataSource();
-    }
-    if (this.searchText) {
-      this.elements = this.computers.searchLocalDataBy(this.searchText);
-      this.computers.setDataSource(prev);
-    }
-  }
 }
 
 

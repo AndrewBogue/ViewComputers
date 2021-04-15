@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n  <div class=\"col-md-12 mx-auto\">\r\n    <div class=\"md-form\">\r\n      <label for=\"search\">Search</label>\r\n      <input type=\"text\"\r\n             [(ngModel)]=\"searchText\"\r\n             class=\"form-control\"\r\n             id=\"search\"\r\n             mdbInput />\r\n    </div>\r\n  </div>\r\n</div>\r\n<table class='table table-striped' aria-labelledby=\"tableLabel\" *ngIf=\"data.computers\">\r\n  <thead>\r\n    <tr>\r\n      <th>Processor</th>\r\n      <th>RAM</th>\r\n      <th>HDD</th>\r\n      <th>USB</th>\r\n      <th>Graphics card</th>\r\n      <th>Weight</th>\r\n      <th>Power Supply</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor=\"let c of data.computers\">\r\n      <td>{{ c.processor }}</td>\r\n      <td>{{ c.ram + c.ramUnits }}</td>\r\n      <td>{{ c.hardDisk + c.hardDiskUnits + c.hardDiskType }}</td>\r\n      <td>{{ c.usb }}</td>\r\n      <td>{{ c.graphicsCard }}</td>\r\n      <td>{{ c.weight + c.weightUnits }}</td>\r\n      <td>{{ c.powerSupply + \"W PSU\"}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n<table class='table table-striped' aria-labelledby=\"tableLabel\" *ngIf=\"data.computers\">\r\n  <thead>\r\n    <tr>\r\n      <th>Processor</th>\r\n      <th>RAM</th>\r\n      <th>HDD</th>\r\n      <th>USB</th>\r\n      <th>Graphics card</th>\r\n      <th>Weight</th>\r\n      <th>Power Supply</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor=\"let c of data.computers\">\r\n      <td>{{ c.processor }}</td>\r\n      <td>{{ c.ram + ' ' + c.ramUnits }}</td>\r\n      <td>{{ c.hardDisk + c.hardDiskUnits + c.hardDiskType }}</td>\r\n      <td>{{ c.usb }}</td>\r\n      <td>{{ c.graphicsCard }}</td>\r\n      <td>{{ c.weight +  ' ' + c.weightUnits }}</td>\r\n      <td>{{ c.powerSupply + \"W PSU\"}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n");
 
 /***/ }),
 
@@ -278,24 +278,10 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 let ComputerListView = class ComputerListView {
     constructor(data) {
         this.data = data;
-        this.elements = [];
-        this.headElements = ['processor', 'ram', 'Last', 'Handle'];
-        this.searchText = '';
     }
     ngOnInit() {
         this.data.loadComputers()
             .subscribe();
-    }
-    searchItems() {
-        const prev = this.computers.getDataSource();
-        if (!this.searchText) {
-            this.computers.setDataSource(this.previous);
-            this.elements = this.computers.getDataSource();
-        }
-        if (this.searchText) {
-            this.elements = this.computers.searchLocalDataBy(this.searchText);
-            this.computers.setDataSource(prev);
-        }
     }
 };
 ComputerListView.ctorParameters = () => [
